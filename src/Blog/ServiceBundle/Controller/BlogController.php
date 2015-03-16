@@ -20,16 +20,29 @@ class BlogController extends Controller
      * Lists all Blog entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()
+            ->getEntityManager()
+        ;
+        $qb = $em->createQueryBuilder();
 
-        $entities = $em->getRepository('BlogServiceBundle:Blog')->findBy([
-                'user' => $this->getUser()
-            ]);
+        $query = $qb->select('b,u')
+            ->from('BlogServiceBundle:Blog','b')
+            ->leftJoin('b.user','u')
+            ->where('b.user = :user')
+            ->setParameter('user',$this->getUser())
+        ;
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
 
         return $this->render('BlogServiceBundle:Blog:index.html.twig', array(
-            'entities' => $entities,
+            'pagination' => $pagination,
         ));
     }
     /**
@@ -51,7 +64,7 @@ class BlogController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('profile_blog_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('profile_blog'));
         }
 
         return $this->render('BlogServiceBundle:Blog:new.html.twig', array(
