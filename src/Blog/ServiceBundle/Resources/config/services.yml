@@ -1,0 +1,20 @@
+services:
+    blog_user.registration.form.type:
+        class: Blog\ServiceBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: blog_service_user_registration }
+
+    security.role_hierarchy:
+        class: Blog\ServiceBundle\Services\RoleHierarchy
+        public: false
+        arguments: ['%security.role_hierarchy.roles%', '@doctrine']
+
+    pages:
+        class: Blog\ServiceBundle\Extensions\PageExtension
+        arguments: [@doctrine.orm.entity_manager]
+
+    twig.extension.appstate:
+        class: Blog\ServiceBundle\Extensions\PageTwigExtension
+        arguments: [@pages]
+        tags:
+            - { name: twig.extension }

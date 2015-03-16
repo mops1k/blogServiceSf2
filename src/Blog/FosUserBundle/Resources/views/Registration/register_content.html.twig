@@ -1,0 +1,18 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{% set title = 'security.register.title'|trans %}
+
+<div class="container">
+    <div class="row">
+        <form role="form"  action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+              class="fos_user_registration_register">
+            <div class="col-lg-6 col-md-push-3">
+                {{ form_widget(form) }}
+                <div class="row">
+                    <input type="submit" class="btn btn-large btn-block btn-success" value="{{ 'registration.submit'|trans }}" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - @phplife.ru" uuid="e0e95c9a-563e-44ea-bbca-d68463d266f1">
+      <secret-storage>master_key</secret-storage>
+      <user-name>mops1k</user-name>
+      <schema-pattern>blogService.*</schema-pattern>
+      <default-schemas>devel.*</default-schemas>
+      <ssh-properties>
+        <enabled>true</enabled>
+        <proxy-host>phplife.ru</proxy-host>
+        <proxy-port>22</proxy-port>
+        <secret-storage>master_key</secret-storage>
+        <user>root</user>
+        <use-password>true</use-password>
+      </ssh-properties>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,10 @@
+blog_service_home:
+    path:     /
+    defaults: { _controller: BlogServiceBundle:Main:index }
+
+blog_service_page:
+    path:      /page/{name}
+    defaults: { _controller: BlogServiceBundle:Main:page }
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

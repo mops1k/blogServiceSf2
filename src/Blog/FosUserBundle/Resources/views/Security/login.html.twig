@@ -1,0 +1,45 @@
+{# author: mops1k #}
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    {% if title is defined %}{{ title }} - {% endif %}{{ 'blog_service_title'|trans }}
+{% endblock title %}
+
+{% set title = 'security.login.title'|trans %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/mops1ktwbs/css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/mops1ktwbs/css/bootstrap-theme.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/blogfosuser/css/login.css') }}"/>
+{% endblock stylesheets %}
+
+{% block body %}
+    <form class="form-signin" action="{{ path("fos_user_security_check") }}" method="post">
+        <h2 class="form-signin-heading">{{ 'security.login.title'|trans }}</h2>
+
+        {% if error %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error!</strong> {{ error.message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endif %}
+
+        <label for="inputEmail" class="sr-only">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="text" id="inputEmail" class="form-control"  name="_username" value="{{ last_username }}"
+               placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle')|replace({':': ''}) }}" required autofocus>
+
+        <label for="inputPassword" class="sr-only">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="password" id="inputPassword" class="form-control" name="_password" required="required"
+               placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle')|replace({':': ''}) }}" required>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" name="_remember_me" value="on"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+        <h4 class="text-center">{{ 'or'|trans({},'messages') }} <a href="{{ path('fos_user_registration_register') }}">{{ 'security.register.suggest'|trans({},'messages') }}</a></h4>
+    </form>
+{% endblock body %}

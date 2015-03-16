@@ -1,0 +1,38 @@
+{# author: mops1k #}
+<ul class="nav navbar-nav">
+    {% for page in pages %}
+    <li><a href="{{ path('blog_service_page', {"name": page.name}) }}">{{ page.title }}</a></li>
+    {% endfor %}
+</ul>
+
+{% if app.user.username is defined %}
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button"
+               aria-expanded="false">
+                {{ 'signed.as'|trans }} {{ app.user.username }}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li><a href="{{ path('fos_user_profile_edit') }}">Редактировать профиль</a></li>
+                <li><a href="{{ path('fos_user_change_password') }}">Сменить пароль</a></li>
+                <li class="divider"></li>
+                <li><a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_logout') }}">Выход</a></li>
+            </ul>
+        </li>
+    </ul>
+{% else %}
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" role="button"
+               aria-expanded="false">
+                Пользователь
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li><a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_login') }}">Авторизация</a></li>
+                <li><a role="menuitem" tabindex="-1" href="{{ path('fos_user_registration_register') }}">Регистрация</a></li>
+            </ul>
+        </li>
+    </ul>
+{% endif %}
