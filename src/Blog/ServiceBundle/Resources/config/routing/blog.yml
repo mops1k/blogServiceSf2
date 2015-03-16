@@ -1,0 +1,30 @@
+profile_blog:
+    path:     /
+    defaults: { _controller: "BlogServiceBundle:Blog:index" }
+
+profile_blog_show:
+    path:     /{id}/show
+    defaults: { _controller: "BlogServiceBundle:Blog:show" }
+
+profile_blog_new:
+    path:     /new
+    defaults: { _controller: "BlogServiceBundle:Blog:new" }
+
+profile_blog_create:
+    path:     /create
+    defaults: { _controller: "BlogServiceBundle:Blog:create" }
+    methods:  POST
+
+profile_blog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BlogServiceBundle:Blog:edit" }
+
+profile_blog_update:
+    path:     /{id}/update
+    defaults: { _controller: "BlogServiceBundle:Blog:update" }
+    methods:  [POST, PUT]
+
+profile_blog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BlogServiceBundle:Blog:delete" }
+    methods:  [POST, DELETE]

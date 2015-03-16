@@ -1,0 +1,17 @@
+{% extends 'BlogServiceBundle:Layout:base.html.twig' %}
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+
+{% block content -%}
+    <h1>Blog edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('profile_blog') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
