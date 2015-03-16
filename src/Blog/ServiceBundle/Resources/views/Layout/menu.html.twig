@@ -1,7 +1,9 @@
 {# author: mops1k #}
 <ul class="nav navbar-nav">
     {% for page in pages %}
-    <li><a href="{{ path('blog_service_page', {"name": page.name}) }}">{{ page.title }}</a></li>
+        {% if page.name != 'index' %}
+            <li><a href="{{ path('blog_service_page', {"name": page.name}) }}">{{ page.title }}</a></li>
+        {% endif %}
     {% endfor %}
 </ul>
 

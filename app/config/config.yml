@@ -76,6 +76,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Blog\ServiceBundle\Entity\User
+    profile:
+        form:
+            type: blog_service_user_profile_edit
     registration:
         form:
             type: blog_service_user_registration

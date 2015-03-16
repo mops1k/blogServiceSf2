@@ -4,6 +4,11 @@ services:
         tags:
             - { name: form.type, alias: blog_service_user_registration }
 
+    blog_user.profile.form.type:
+        class: Blog\ServiceBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type, alias: blog_service_user_profile_edit }
+
     security.role_hierarchy:
         class: Blog\ServiceBundle\Services\RoleHierarchy
         public: false
