@@ -51,6 +51,11 @@ class User extends BaseUser
      */
     protected $userRoles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Blog",mappedBy="user")
+     */
+    private $posts;
+
     public function __construct()
     {
         parent::__construct();

@@ -16,6 +16,12 @@
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                <li role="presentation" class="dropdown-header">Блог</li>
+                <li><a href="{{ path('profile_blog_new') }}">Добавить запись</a></li>
+                <li><a href="{{ path('profile_blog') }}">Все записи</a></li>
+                <li role="presentation" class="dropdown-header">Личный кабинет</li>
+                <li><a href="{{ path('fos_user_profile_show') }}">Профиль</a></li>
+                <li class="divider"></li>
                 <li><a href="{{ path('fos_user_profile_edit') }}">Редактировать профиль</a></li>
                 <li><a href="{{ path('fos_user_change_password') }}">Сменить пароль</a></li>
                 <li class="divider"></li>

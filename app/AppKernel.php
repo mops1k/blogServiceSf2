@@ -17,6 +17,8 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),
+
+            // bundle
             new Blog\ServiceBundle\BlogServiceBundle(),
 
             // jquery + bootstrap
@@ -26,6 +28,9 @@ class AppKernel extends Kernel
             // users
             new FOS\UserBundle\FOSUserBundle(),
             new Blog\FosUserBundle\BlogFosUserBundle(),
+
+            // blog
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

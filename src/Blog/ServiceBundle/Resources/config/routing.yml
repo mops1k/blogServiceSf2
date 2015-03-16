@@ -1,3 +1,7 @@
+blog_service_profile_blog:
+    resource: "@BlogServiceBundle/Resources/config/routing/blog.yml"
+    prefix:   /profile/blog
+
 blog_service_home:
     path:     /
     defaults: { _controller: BlogServiceBundle:Main:index }
