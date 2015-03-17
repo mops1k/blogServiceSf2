@@ -1,0 +1,12 @@
+{# author: mops1k #}
+{% extends 'BlogServiceBundle:Layout:base.html.twig' %}
+
+{% block content %}
+<div class="fos_user_user_show">
+    <p>Пользователь: {{ user.username }}</p>
+    <p>Зовут: {{ user.realname }}</p>
+    <p>Название блога: {{ user.blogName }}</p>
+    <p>Записей в блоге: {{ user.posts|length }}</p>
+    <p><a class="btn btn-default" href="{{ path('blog_service_show_user', {'name': user.username}) }}">Читать блог</a></p>
+</div>
+{% endblock %}

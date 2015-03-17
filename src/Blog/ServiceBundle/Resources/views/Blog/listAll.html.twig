@@ -20,7 +20,7 @@
             {% for post in pagination %}
             <div class="blog-post">
                 <a href="{{ path('blog_service_show_full',{'id':post.id,'name':post.user}) }}"><h2 class="blog-post-title">{{ post.title }}</h2></a>
-                <p class="blog-post-meta">{{ post.date.format('Y.m.d H:i') }} by <a href="#">{{ post.user }}</a></p>
+                <p class="blog-post-meta">{{ post.date.format('Y.m.d H:i') }} by <a href="{{ path('blog_service_show_user_profile',{'name': post.user}) }}">{{ post.user }}</a></p>
 
                 <p>{{ post.content|raw }}</p>
             </div><!-- /.blog-post -->

@@ -2,10 +2,27 @@
 {% extends 'BlogServiceBundle:Layout:base.html.twig' %}
 
 {% block content %}
-    <form method="get">
-        <div class="input-group">
-            <input type="text" class="form-control" name="search" value="{{ search }}" />
-            <button type="submit" class="input-group-addon">Search</button>
-        </div>
-    </form>
+    <div class="row col-lg-12">
+        <form method="post" action="{{ path('blog_service_home') }}">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control input-group-field" name="search" value="{{ search }}" placeholder="Найти блог по имени пользователя">
+                <span class="input-group-btn"><input class="btn btn-success" type="submit" value="Искать"></span>
+            </div>
+        </form>
+    </div>
+
+    <br />
+    <div class="row col-lg-12">
+        {% for user in result %}
+            <hr />
+            <h3><a href="{{ path('blog_service_show_user_profile',{'name': user.username}) }}">{{ user.username }}</a></h3>
+            <p>
+                Блог:  {{ user.blogName }}<br>
+                Новостей в блоге: {{ user.posts|length }}<br>
+                <small><em><a href="{{ path('blog_service_show_user',{'name': user.username}) }}">Перейти в блог</a></em></small>
+            </p>
+        {% endfor %}
+    </div>
+
+
 {% endblock %}

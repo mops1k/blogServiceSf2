@@ -84,7 +84,7 @@ fos_user:
         form:
             type: blog_service_user_registration
         confirmation:
-            enabled:    true
+            enabled:   false
             from_email:
                 address:        registration@blog.phplife.ru
                 sender_name:    Сервис интернет-блогов
