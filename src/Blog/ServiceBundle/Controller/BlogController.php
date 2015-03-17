@@ -157,7 +157,11 @@ class BlogController extends Controller
 
         $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
 
-        if($entity->getUser() != $this->getUser() || !$this->isGranted('ROLE_SUPER_ADMIN'))
+        $canEdit = false;
+
+        if($entity->getUser() == $this->getUser()) $canEdit = true;
+        if($this->isGranted('ROLE_SUPER_ADMIN')) $canEdit = true;
+        if(!$canEdit)
             throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
 
         if (!$entity) {
@@ -202,7 +206,11 @@ class BlogController extends Controller
 
         $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
 
-        if($entity->getUser() != $this->getUser() || !$this->isGranted('ROLE_SUPER_ADMIN'))
+        $canEdit = false;
+
+        if($entity->getUser() == $this->getUser()) $canEdit = true;
+        if($this->isGranted('ROLE_SUPER_ADMIN')) $canEdit = true;
+        if(!$canEdit)
             throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
 
         if (!$entity) {
@@ -238,7 +246,11 @@ class BlogController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
 
-            if($entity->getUser() != $this->getUser() || !$this->isGranted('ROLE_SUPER_ADMIN'))
+            $canEdit = false;
+
+            if($entity->getUser() == $this->getUser()) $canEdit = true;
+            if($this->isGranted('ROLE_SUPER_ADMIN')) $canEdit = true;
+            if(!$canEdit)
                 throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
 
             if (!$entity) {

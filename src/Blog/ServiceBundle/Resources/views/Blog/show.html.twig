@@ -1,28 +1,30 @@
 {% extends 'BlogServiceBundle:Layout:base.html.twig' %}
 
 {% block content %}
-    <div class="page-header">
+    <div class="page-header col-sm-12">
         <h1 class="col-sm-10">{{ entity.title }}
             <br />
-        <small><em>{{ entity.user }} <time>{{ entity.date.format('d.m.Y H:i') }}</time></small></em>
+        <small><em>{{ entity.user }} <time>{{ entity.date.format('d.m.Y H:i') }}</time></em></small>
         </h1>
 
         <div class="col-sm-2">
             {% if owner or is_granted('ROLE_SUPER_ADMIN') %}
-            <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                    Dropdown
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                </ul>
-            </div>
+                {{ form_start(delete_form) }}
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            Действия
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation"><a role="menuitem" tabindex="-1"
+                                                       href="{{ path('profile_blog_edit', { 'id': entity.id }) }}">Редактировать</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0);"
+                                                       onclick="$(this).closest('form').submit()">Удалить</a></li>
+                        </ul>
+                    </div>
+                {{ form_end(delete_form) }}
             {% endif %}
         </div>
     </div>
-    <p>{{ entity.content }}</p>
+    <p class="col-sm-12">{{ entity.content }}</p>
 {% endblock %}
