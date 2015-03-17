@@ -23,9 +23,11 @@ class BlogType extends AbstractType
                 'attr' => [
                     'rows' => 5,
                     'class' => 'ckeditor'
-                ]
+                ],
             ])
-            ->add('photos','iphp_file')
+            ->add('photos','iphp_file', [
+                'required' => false
+            ])
         ;
     }
     

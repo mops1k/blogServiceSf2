@@ -26,7 +26,8 @@
             {% endif %}
         </div>
     </div>
-    <p class="col-sm-12">{{ entity.content }}</p>
+    <p class="col-sm-12">{{ entity.content|raw }}</p>
+    {% if entity.photos is iterable %}
     <p class="col-sm-12">
         <div>
             <a href="{{ entity.photos.path }}" class="thumbnail" target="_blank">
@@ -34,4 +35,5 @@
             </a>
         </div>
     </p>
+    {% endif %}
 {% endblock %}

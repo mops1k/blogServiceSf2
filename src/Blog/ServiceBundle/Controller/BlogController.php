@@ -113,7 +113,6 @@ class BlogController extends Controller
         $entity = new Blog();
         $entity->setUser($this->getUser());
         $entity->setDate(new \DateTime());
-        $entity->setPhotos('');
 
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -146,7 +145,9 @@ class BlogController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('photos','file');
+        $form->add('photos','file',[
+            'required' => false
+        ]);
 
         return $form;
     }
