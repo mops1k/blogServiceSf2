@@ -46,6 +46,29 @@ class BlogController extends Controller
             'pagination' => $pagination,
         ));
     }
+
+    public function showAllAction(Request $request){
+        $em = $this->getDoctrine()
+            ->getEntityManager()
+        ;
+        $qb = $em->createQueryBuilder();
+
+        $query = $qb->select('b,u')
+            ->from('BlogServiceBundle:Blog','b')
+            ->leftJoin('b.user','u')
+        ;
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('BlogServiceBundle:Blog:listAll.html.twig', array(
+            'pagination' => $pagination,
+        ));
+    }
     /**
      * Creates a new Blog entity.
      *
@@ -87,6 +110,8 @@ class BlogController extends Controller
             'action' => $this->generateUrl('profile_blog_create'),
             'method' => 'POST',
         ));
+
+        $form->add('photos','file');
 
         return $form;
     }
@@ -193,6 +218,8 @@ class BlogController extends Controller
             ]),
             'method' => 'PUT',
         ));
+
+        $form->add('photos','file');
 
         return $form;
     }

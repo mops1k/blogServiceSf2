@@ -3,12 +3,15 @@
 namespace Blog\ServiceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Blog
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @FileStore\Uploadable
  */
 class Blog
 {
@@ -58,6 +61,8 @@ class Blog
     /**
      * @var string
      *
+     * @Assert\File( maxSize="20M")
+     * @FileStore\UploadableField(mapping="photo")
      * @ORM\Column(name="photos", type="array")
      */
     private $photos;

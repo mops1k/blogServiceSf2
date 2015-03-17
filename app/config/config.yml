@@ -98,3 +98,13 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+iphp_file_store:
+    mappings:
+       photo:
+           upload_dir:  %kernel.root_dir%/../web/photo
+           upload_path: /photo
+           directory_namer:
+               date:
+                  params: { field : date, depth : month }
+           namer: ~

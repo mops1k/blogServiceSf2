@@ -24,7 +24,8 @@
         "bmatzner/jquery-bundle": "~1.9",
         "mops1k/twbs-bundle": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "knplabs/knp-paginator-bundle": "~2.4"
+        "knplabs/knp-paginator-bundle": "~2.4",
+        "iphp/filestore-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

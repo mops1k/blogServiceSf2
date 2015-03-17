@@ -13,10 +13,10 @@ blog_service_page:
 #blog_service_show_user:
 #    path:      /blog/{name}
 #    defaults: { _controller: BlogServiceBundle:Blog:showUser }
-#
-#blog_service_show_all:
-#    path:      /blog
-#    defaults: { _controller: BlogServiceBundle:Blog:showAll }
+
+blog_service_show_all:
+    path:      /blog
+    defaults: { _controller: BlogServiceBundle:Blog:showAll }
 
 blog_service_show_full:
     path:      /blog/{name}/{id}

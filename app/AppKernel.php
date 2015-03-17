@@ -31,6 +31,9 @@ class AppKernel extends Kernel
 
             // blog
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+
+            // images
+            new Iphp\FileStoreBundle\IphpFileStoreBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
