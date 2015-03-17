@@ -1,0 +1,12 @@
+# Acme/DemoBundle/Resources/config/admin.yml
+services:
+    blog_service.admin.blog:
+        class: Blog\ServiceBundle\Admin\BlogAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Blog", label: "Blog" }
+        arguments:
+            - ~
+            - Blog\ServiceBundle\Entity\Blog
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogServiceBundle]]
