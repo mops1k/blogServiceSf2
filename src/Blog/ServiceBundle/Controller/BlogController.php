@@ -2,6 +2,7 @@
 
 namespace Blog\ServiceBundle\Controller;
 
+use Doctrine\ORM\AbstractQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -87,8 +88,6 @@ class BlogController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
         return $form;
     }
 
@@ -111,11 +110,29 @@ class BlogController extends Controller
      * Finds and displays a Blog entity.
      *
      */
-    public function showAction($id)
+    public function showAction($name, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
+        $em = $this->getDoctrine()
+            ->getEntityManager()
+        ;
+        $qb = $em->createQueryBuilder();
+
+        $qb->select('b,u')
+            ->from('BlogServiceBundle:Blog','b')
+            ->leftJoin('b.user','u')
+            ->where('b.id = :id')
+            ->andWhere('u.username = :username')
+            ->setParameters([
+                ':id'       => $id,
+                ':username' => $name
+            ])
+        ;
+
+        $entity = $qb->getQuery()->getOneOrNullResult(AbstractQuery::HYDRATE_OBJECT);
+
+        $owner = $entity->getUser() == $this->getUser() ? true : false;
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Blog entity.');
@@ -126,6 +143,7 @@ class BlogController extends Controller
         return $this->render('BlogServiceBundle:Blog:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+            'owner'       => $owner
         ));
     }
 
@@ -139,7 +157,7 @@ class BlogController extends Controller
 
         $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
 
-        if($entity->getUser() != $this->getUser())
+        if($entity->getUser() != $this->getUser() || !$this->isGranted('ROLE_SUPER_ADMIN'))
             throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
 
         if (!$entity) {
@@ -166,11 +184,11 @@ class BlogController extends Controller
     private function createEditForm(Blog $entity)
     {
         $form = $this->createForm(new BlogType(), $entity, array(
-            'action' => $this->generateUrl('profile_blog_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('profile_blog_update', [
+                'id' => $entity->getId()
+            ]),
             'method' => 'PUT',
         ));
-
-        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -184,7 +202,7 @@ class BlogController extends Controller
 
         $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
 
-        if($entity->getUser() != $this->getUser())
+        if($entity->getUser() != $this->getUser() || !$this->isGranted('ROLE_SUPER_ADMIN'))
             throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
 
         if (!$entity) {
@@ -220,7 +238,7 @@ class BlogController extends Controller
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('BlogServiceBundle:Blog')->find($id);
 
-            if($entity->getUser() != $this->getUser())
+            if($entity->getUser() != $this->getUser() || !$this->isGranted('ROLE_SUPER_ADMIN'))
                 throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
 
             if (!$entity) {
@@ -246,7 +264,6 @@ class BlogController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('profile_blog_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

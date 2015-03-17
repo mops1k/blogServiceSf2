@@ -4,14 +4,17 @@
 {% block content -%}
     <h1>Blog edit</h1>
 
-    {{ form(edit_form) }}
+    {{ form_start(edit_form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('profile_blog') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+    {{ form_widget(edit_form) }}
+
+        <button type="submit" class="btn btn-success" name="form[submit]">Обновить запись</button>
+    {{ form_end(edit_form) }}
+    {{ form_start(delete_form) }}
+    <div class="btn-group" role="group">
+        <button type="submit" class="btn btn-warning" name="form[submit]">Удалить запись</button>
+        <a class="btn btn-default" href="{{ path('profile_blog') }}">Вернуться к списку</a>
+    </div>
+    {{ form_end(delete_form) }}
+
 {% endblock %}

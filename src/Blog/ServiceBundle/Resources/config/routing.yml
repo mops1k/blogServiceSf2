@@ -10,5 +10,17 @@ blog_service_page:
     path:      /page/{name}
     defaults: { _controller: BlogServiceBundle:Main:page }
 
+#blog_service_show_user:
+#    path:      /blog/{name}
+#    defaults: { _controller: BlogServiceBundle:Blog:showUser }
+#
+#blog_service_show_all:
+#    path:      /blog
+#    defaults: { _controller: BlogServiceBundle:Blog:showAll }
+
+blog_service_show_full:
+    path:      /blog/{name}/{id}
+    defaults: { _controller: BlogServiceBundle:Blog:show }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

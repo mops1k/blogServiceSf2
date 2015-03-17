@@ -15,8 +15,15 @@ class BlogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
+            ->add('title','text', [
+                'label' => "Заголовок"
+            ])
+            ->add('content', 'textarea', [
+                'label' => 'Новость',
+                'attr' => [
+                    'rows' => 5
+                ]
+            ])
         ;
     }
     

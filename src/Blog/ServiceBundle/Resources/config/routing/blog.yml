@@ -2,10 +2,6 @@ profile_blog:
     path:     /
     defaults: { _controller: "BlogServiceBundle:Blog:index" }
 
-profile_blog_show:
-    path:     /{id}/show
-    defaults: { _controller: "BlogServiceBundle:Blog:show" }
-
 profile_blog_new:
     path:     /new
     defaults: { _controller: "BlogServiceBundle:Blog:new" }
