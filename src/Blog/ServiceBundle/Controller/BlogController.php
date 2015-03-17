@@ -69,6 +69,41 @@ class BlogController extends Controller
             'pagination' => $pagination,
         ));
     }
+
+    public function showUserAction($name, Request $request){
+        $em = $this->getDoctrine()
+            ->getEntityManager()
+        ;
+        $qb = $em->createQueryBuilder();
+
+        $query = $qb->select('b,u')
+            ->from('BlogServiceBundle:Blog','b')
+            ->leftJoin('b.user','u')
+            ->where('u.username = :name')
+            ->setParameter(':name', $name)
+        ;
+
+        $user = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('BlogServiceBundle:User')
+            ->findOneBy([
+                'username' => $name
+            ])
+        ;
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->get('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('BlogServiceBundle:Blog:listUser.html.twig', array(
+            'pagination' => $pagination,
+            'user' => $user
+        ));
+    }
+
     /**
      * Creates a new Blog entity.
      *
@@ -219,7 +254,7 @@ class BlogController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('photos','file');
+        $form->add('photos','iphp_file');
 
         return $form;
     }

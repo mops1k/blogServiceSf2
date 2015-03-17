@@ -7,14 +7,21 @@
     {{ form_start(edit_form) }}
 
     {{ form_widget(edit_form) }}
-
+    <p></p>
+    <div class="row col-sm-12">
         <button type="submit" class="btn btn-success" name="form[submit]">Обновить запись</button>
+    </div>
+
     {{ form_end(edit_form) }}
     {{ form_start(delete_form) }}
-    <div class="btn-group" role="group">
-        <button type="submit" class="btn btn-warning" name="form[submit]">Удалить запись</button>
-        <a class="btn btn-default" href="{{ path('profile_blog') }}">Вернуться к списку</a>
+    <p></p>
+    <div class="row col-md-12">
+        <div class="btn-group" role="group">
+            <button type="submit" class="btn btn-warning" name="form[submit]">Удалить запись</button>
+            <a class="btn btn-default" href="{{ path('profile_blog') }}">Вернуться к списку</a>
+        </div>
     </div>
+
     {{ form_end(delete_form) }}
 
 {% endblock %}

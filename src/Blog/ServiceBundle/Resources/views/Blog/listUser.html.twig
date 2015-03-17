@@ -1,0 +1,34 @@
+{# author: mops1k #}
+{% extends 'BlogServiceBundle:Layout:base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/blogservice/css/blog.css') }}"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="blog-header">
+        <h1 class="blog-title">Блог "{{ user.blogName }}"</h1>
+        <p class="lead blog-description">блог пользователя {{ user.usernameCanonical }}</p>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            {% for post in pagination %}
+            <div class="blog-post">
+                <a href="{{ path('blog_service_show_full',{'id':post.id,'name':post.user}) }}"><h2 class="blog-post-title">{{ post.title }}</h2></a>
+                <p class="blog-post-meta">{{ post.date.format('Y.m.d H:i') }} by <a href="#">{{ post.user }}</a></p>
+
+                <p>{{ post.content }}</p>
+            </div><!-- /.blog-post -->
+            {% endfor %}
+
+            <div class="navigation">
+                {{ knp_pagination_render(pagination) }}
+            </div>
+
+        </div><!-- /.blog-main -->
+{% endblock content %}

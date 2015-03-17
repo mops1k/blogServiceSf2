@@ -27,4 +27,11 @@
         </div>
     </div>
     <p class="col-sm-12">{{ entity.content }}</p>
+    <p class="col-sm-12">
+        <div>
+            <a href="{{ entity.photos.path }}" class="thumbnail" target="_blank">
+                <img src="{{ entity.photos.path }}" {{ entity.photos.height > 150 ? 'height="150"':''}}/>
+            </a>
+        </div>
+    </p>
 {% endblock %}

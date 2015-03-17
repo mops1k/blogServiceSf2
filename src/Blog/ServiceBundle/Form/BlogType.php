@@ -24,6 +24,7 @@ class BlogType extends AbstractType
                     'rows' => 5
                 ]
             ])
+            ->add('photos','iphp_file')
         ;
     }
     

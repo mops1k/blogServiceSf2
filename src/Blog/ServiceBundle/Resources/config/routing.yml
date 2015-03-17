@@ -10,9 +10,9 @@ blog_service_page:
     path:      /page/{name}
     defaults: { _controller: BlogServiceBundle:Main:page }
 
-#blog_service_show_user:
-#    path:      /blog/{name}
-#    defaults: { _controller: BlogServiceBundle:Blog:showUser }
+blog_service_show_user:
+    path:      /blog/{name}
+    defaults: { _controller: BlogServiceBundle:Blog:showUser }
 
 blog_service_show_all:
     path:      /blog
