@@ -2,5 +2,10 @@
 {% extends 'BlogServiceBundle:Layout:base.html.twig' %}
 
 {% block content %}
-    {{ page.content }}
+    <form method="get">
+        <div class="input-group">
+            <input type="text" class="form-control" name="search" value="{{ search }}" />
+            <button type="submit" class="input-group-addon">Search</button>
+        </div>
+    </form>
 {% endblock %}

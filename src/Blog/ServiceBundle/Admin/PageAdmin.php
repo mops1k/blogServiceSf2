@@ -7,15 +7,15 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-class BlogAdmin extends Admin
+class PageAdmin extends Admin
 {
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
+            ->add('name', 'text')
             ->add('title', 'text')
             ->add('content',  'textarea', array('attr'=>array('class'=>'ckeditor')))
-            ->add('photos','iphp_file')
         ;
     }
 
@@ -24,7 +24,6 @@ class BlogAdmin extends Admin
     {
         $datagridMapper
             ->add('title')
-            ->add('user')
         ;
     }
 
@@ -33,7 +32,6 @@ class BlogAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('title')
-            ->add('user')
         ;
     }
 }

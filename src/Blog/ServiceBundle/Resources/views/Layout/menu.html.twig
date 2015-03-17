@@ -1,5 +1,6 @@
 {# author: mops1k #}
 <ul class="nav navbar-nav">
+    <li><a href="{{ path('blog_service_show_all') }}">Все новости</a></li>
     {% for page in pages %}
         {% if page.name != 'index' %}
             <li><a href="{{ path('blog_service_page', {"name": page.name}) }}">{{ page.title }}</a></li>
@@ -25,6 +26,9 @@
                 <li><a href="{{ path('fos_user_profile_edit') }}">Редактировать профиль</a></li>
                 <li><a href="{{ path('fos_user_change_password') }}">Сменить пароль</a></li>
                 <li class="divider"></li>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <li><a role="menuitem" tabindex="-1" href="{{ path('sonata_admin_dashboard') }}">Админпанель</a></li>
+                {% endif %}
                 <li><a role="menuitem" tabindex="-1" href="{{ path('fos_user_security_logout') }}">Выход</a></li>
             </ul>
         </li>

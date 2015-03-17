@@ -215,4 +215,9 @@ class Blog
     {
         return $this->user;
     }
+
+    public function __toString()
+    {
+        return $this->getId().'::'.$this->getTitle();
+    }
 }

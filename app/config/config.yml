@@ -118,6 +118,11 @@ sonata_block:
 
 sonata_admin:
     title:      Blog Service Admin
+    security:
+        handler: sonata.admin.security.handler.role
+    templates:
+        # default global templates
+        layout:  BlogServiceBundle:Sonata:layout.html.twig
 
 sonata_formatter:
     formatters:

@@ -1,5 +1,29 @@
-{% extends 'BlogServiceBundle:Layout:base.html.twig' %}
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block sonata_top_nav_menu %}
+    <div class="navbar-right">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-plus-square fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                {% include admin_pool.getTemplate('add_block') %}
+            </li>
+            <li class="dropdown user-menu">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <b>{{ app.user.username }}</b> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="{{ path('blog_service_home') }}">На сайт</a></li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}">Выйти</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -18,19 +42,4 @@
     <script src="{{ asset('bundles/sonataformatter/markitup/sets/markdown/set.js') }}" type="text/javascript"></script>
     <script src="{{ asset('bundles/sonataformatter/markitup/sets/html/set.js') }}" type="text/javascript"></script>
     <script src="{{ asset('bundles/sonataformatter/markitup/sets/textile/set.js') }}" type="text/javascript"></script>
-{% endblock %}
-
-{% block content -%}
-    <h1>Новая запись в блоге</h1>
-
-    {{ form_start(form) }}
-
-    {{ form_widget(form) }}
-
-    <div class="btn-group" role="group">
-        <button type="submit" class="btn btn-success" name="form[submit]">Сохранить запись</button>
-        <a class="btn btn-default" href="{{ path('profile_blog') }}">Вернуться к списку</a>
-    </div>
-
-    {{ form_end(form) }}
 {% endblock %}

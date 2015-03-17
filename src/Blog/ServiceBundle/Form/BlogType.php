@@ -21,7 +21,8 @@ class BlogType extends AbstractType
             ->add('content', 'textarea', [
                 'label' => 'Новость',
                 'attr' => [
-                    'rows' => 5
+                    'rows' => 5,
+                    'class' => 'ckeditor'
                 ]
             ])
             ->add('photos','iphp_file')

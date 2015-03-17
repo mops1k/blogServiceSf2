@@ -10,3 +10,36 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [BlogServiceBundle]]
+
+    blog_service.admin.page:
+        class: Blog\ServiceBundle\Admin\PageAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Blog", label: "Page" }
+        arguments:
+            - ~
+            - Blog\ServiceBundle\Entity\Page
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogServiceBundle]]
+
+    blog_service.admin.user:
+        class: Blog\ServiceBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Security", label: "User" }
+        arguments:
+            - ~
+            - Blog\ServiceBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogServiceBundle]]
+
+    blog_service.admin.role:
+        class: Blog\ServiceBundle\Admin\RoleAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Security", label: "Role" }
+        arguments:
+            - ~
+            - Blog\ServiceBundle\Entity\Role
+            - ~
+        calls:
+            - [ setTranslationDomain, [BlogServiceBundle]]
