@@ -58,7 +58,7 @@ class Blog
     /**
      * @var string
      *
-     * @ORM\Column(name="photos", type="text")
+     * @ORM\Column(name="photos", type="array")
      */
     private $photos;
 

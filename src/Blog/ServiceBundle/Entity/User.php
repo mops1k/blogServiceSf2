@@ -2,6 +2,7 @@
 
 namespace Blog\ServiceBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -58,6 +59,7 @@ class User extends BaseUser
 
     public function __construct()
     {
+        $this->userRoles = new ArrayCollection();
         parent::__construct();
         // your own logic
     }
@@ -116,5 +118,81 @@ class User extends BaseUser
     public function getBlogName()
     {
         return $this->blogName;
+    }
+
+    /**
+     * Add userRoles
+     *
+     * @param \Blog\ServiceBundle\Entity\Role $userRoles
+     * @return User
+     */
+    public function addUserRole(\Blog\ServiceBundle\Entity\Role $userRoles)
+    {
+        $this->userRoles[] = $userRoles;
+
+        return $this;
+    }
+
+    /**
+     * Remove userRoles
+     *
+     * @param \Blog\ServiceBundle\Entity\Role $userRoles
+     */
+    public function removeUserRole(\Blog\ServiceBundle\Entity\Role $userRoles)
+    {
+        $this->userRoles->removeElement($userRoles);
+    }
+
+    /**
+     * Get userRoles
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUserRoles()
+    {
+        return $this->userRoles;
+    }
+
+    /**
+     * Get Roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->userRoles->toArray();
+    }
+
+    /**
+     * Add posts
+     *
+     * @param \Blog\ServiceBundle\Entity\Blog $posts
+     * @return User
+     */
+    public function addPost(\Blog\ServiceBundle\Entity\Blog $posts)
+    {
+        $this->posts[] = $posts;
+
+        return $this;
+    }
+
+    /**
+     * Remove posts
+     *
+     * @param \Blog\ServiceBundle\Entity\Blog $posts
+     */
+    public function removePost(\Blog\ServiceBundle\Entity\Blog $posts)
+    {
+        $this->posts->removeElement($posts);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }
