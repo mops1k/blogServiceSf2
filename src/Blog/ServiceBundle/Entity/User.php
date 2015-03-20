@@ -43,7 +43,6 @@ class User extends BaseUser
      *     maxMessage="The blog name is too long.",
      *     groups={"Registration", "Profile"}
      * )
-     *
      */
     private $blogName;
 
@@ -65,9 +64,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -75,9 +74,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set realname
+     * Set realname.
      *
      * @param string $realname
+     *
      * @return User
      */
     public function setRealname($realname)
@@ -88,9 +88,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get realname
+     * Get realname.
      *
-     * @return string 
+     * @return string
      */
     public function getRealname()
     {
@@ -98,9 +98,10 @@ class User extends BaseUser
     }
 
     /**
-     * Set blogName
+     * Set blogName.
      *
      * @param string $blogName
+     *
      * @return User
      */
     public function setBlogName($blogName)
@@ -111,9 +112,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get blogName
+     * Get blogName.
      *
-     * @return string 
+     * @return string
      */
     public function getBlogName()
     {
@@ -121,9 +122,10 @@ class User extends BaseUser
     }
 
     /**
-     * Add userRoles
+     * Add userRoles.
      *
      * @param \Blog\ServiceBundle\Entity\Role $userRoles
+     *
      * @return User
      */
     public function addUserRole(\Blog\ServiceBundle\Entity\Role $userRoles)
@@ -134,7 +136,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove userRoles
+     * Remove userRoles.
      *
      * @param \Blog\ServiceBundle\Entity\Role $userRoles
      */
@@ -144,9 +146,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get userRoles
+     * Get userRoles.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUserRoles()
     {
@@ -154,7 +156,7 @@ class User extends BaseUser
     }
 
     /**
-     * Get Roles
+     * Get Roles.
      *
      * @return array
      */
@@ -164,9 +166,10 @@ class User extends BaseUser
     }
 
     /**
-     * Add posts
+     * Add posts.
      *
      * @param \Blog\ServiceBundle\Entity\Blog $posts
+     *
      * @return User
      */
     public function addPost(\Blog\ServiceBundle\Entity\Blog $posts)
@@ -177,7 +180,7 @@ class User extends BaseUser
     }
 
     /**
-     * Remove posts
+     * Remove posts.
      *
      * @param \Blog\ServiceBundle\Entity\Blog $posts
      */
@@ -187,9 +190,9 @@ class User extends BaseUser
     }
 
     /**
-     * Get posts
+     * Get posts.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {

@@ -10,34 +10,34 @@ class BlogType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title','text', [
-                'label' => "Заголовок"
+            ->add('title', 'text', [
+                'label' => "Заголовок",
             ])
             ->add('content', 'textarea', [
                 'label' => 'Новость',
                 'attr' => [
                     'rows' => 5,
-                    'class' => 'ckeditor'
+                    'class' => 'ckeditor',
                 ],
             ])
-            ->add('photos','iphp_file', [
-                'required' => false
+            ->add('photos', 'iphp_file', [
+                'required' => false,
             ])
         ;
     }
-    
+
     /**
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Blog\ServiceBundle\Entity\Blog'
+            'data_class' => 'Blog\ServiceBundle\Entity\Blog',
         ));
     }
 

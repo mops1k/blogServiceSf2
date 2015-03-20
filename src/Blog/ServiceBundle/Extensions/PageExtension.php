@@ -9,7 +9,7 @@ class PageExtension
     /** @var EntityManager $em */
     protected $em;
 
-    function __construct(EntityManager $em)
+    public function __construct(EntityManager $em)
     {
         $this->em = $em;
     }

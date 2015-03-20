@@ -5,7 +5,7 @@ namespace Blog\ServiceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Page
+ * Page.
  *
  * @ORM\Table(name="page")
  * @ORM\Entity()
@@ -42,11 +42,10 @@ class Page
      */
     private $content;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -54,9 +53,10 @@ class Page
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Page
      */
     public function setName($name)
@@ -67,9 +67,9 @@ class Page
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -77,9 +77,10 @@ class Page
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Page
      */
     public function setTitle($title)
@@ -90,9 +91,9 @@ class Page
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -100,9 +101,10 @@ class Page
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Page
      */
     public function setContent($content)
@@ -113,9 +115,9 @@ class Page
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {

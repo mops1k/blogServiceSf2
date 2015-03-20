@@ -5,21 +5,17 @@ namespace Blog\ServiceBundle\Controller;
 use Doctrine\ORM\AbstractQuery;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Blog\ServiceBundle\Entity\Blog;
 use Blog\ServiceBundle\Form\BlogType;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 /**
  * Blog controller.
- *
  */
 class BlogController extends Controller
 {
-
     /**
      * Lists all Blog entities.
-     *
      */
     public function indexAction(Request $request)
     {
@@ -29,10 +25,10 @@ class BlogController extends Controller
         $qb = $em->createQueryBuilder();
 
         $query = $qb->select('b,u')
-            ->from('BlogServiceBundle:Blog','b')
-            ->leftJoin('b.user','u')
+            ->from('BlogServiceBundle:Blog', 'b')
+            ->leftJoin('b.user', 'u')
             ->where('b.user = :user')
-            ->setParameter('user',$this->getUser())
+            ->setParameter('user', $this->getUser())
         ;
 
         $paginator  = $this->get('knp_paginator');
@@ -47,15 +43,16 @@ class BlogController extends Controller
         ));
     }
 
-    public function showAllAction(Request $request){
+    public function showAllAction(Request $request)
+    {
         $em = $this->getDoctrine()
             ->getEntityManager()
         ;
         $qb = $em->createQueryBuilder();
 
         $query = $qb->select('b,u')
-            ->from('BlogServiceBundle:Blog','b')
-            ->leftJoin('b.user','u')
+            ->from('BlogServiceBundle:Blog', 'b')
+            ->leftJoin('b.user', 'u')
         ;
 
         $paginator  = $this->get('knp_paginator');
@@ -70,15 +67,16 @@ class BlogController extends Controller
         ));
     }
 
-    public function showUserAction($name, Request $request){
+    public function showUserAction($name, Request $request)
+    {
         $em = $this->getDoctrine()
             ->getEntityManager()
         ;
         $qb = $em->createQueryBuilder();
 
         $query = $qb->select('b,u')
-            ->from('BlogServiceBundle:Blog','b')
-            ->leftJoin('b.user','u')
+            ->from('BlogServiceBundle:Blog', 'b')
+            ->leftJoin('b.user', 'u')
             ->where('u.username = :name')
             ->setParameter(':name', $name)
         ;
@@ -87,7 +85,7 @@ class BlogController extends Controller
             ->getManager()
             ->getRepository('BlogServiceBundle:User')
             ->findOneBy([
-                'username' => $name
+                'username' => $name,
             ])
         ;
 
@@ -100,13 +98,12 @@ class BlogController extends Controller
 
         return $this->render('BlogServiceBundle:Blog:listUser.html.twig', array(
             'pagination' => $pagination,
-            'user' => $user
+            'user' => $user,
         ));
     }
 
     /**
      * Creates a new Blog entity.
-     *
      */
     public function createAction(Request $request)
     {
@@ -145,8 +142,8 @@ class BlogController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('photos','file',[
-            'required' => false
+        $form->add('photos', 'file', [
+            'required' => false,
         ]);
 
         return $form;
@@ -154,7 +151,6 @@ class BlogController extends Controller
 
     /**
      * Displays a form to create a new Blog entity.
-     *
      */
     public function newAction()
     {
@@ -169,7 +165,6 @@ class BlogController extends Controller
 
     /**
      * Finds and displays a Blog entity.
-     *
      */
     public function showAction($name, $id)
     {
@@ -181,13 +176,13 @@ class BlogController extends Controller
         $qb = $em->createQueryBuilder();
 
         $qb->select('b,u')
-            ->from('BlogServiceBundle:Blog','b')
-            ->leftJoin('b.user','u')
+            ->from('BlogServiceBundle:Blog', 'b')
+            ->leftJoin('b.user', 'u')
             ->where('b.id = :id')
             ->andWhere('u.username = :username')
             ->setParameters([
                 ':id'       => $id,
-                ':username' => $name
+                ':username' => $name,
             ])
         ;
 
@@ -204,13 +199,12 @@ class BlogController extends Controller
         return $this->render('BlogServiceBundle:Blog:show.html.twig', array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-            'owner'       => $owner
+            'owner'       => $owner,
         ));
     }
 
     /**
      * Displays a form to edit an existing Blog entity.
-     *
      */
     public function editAction($id)
     {
@@ -220,10 +214,15 @@ class BlogController extends Controller
 
         $canEdit = false;
 
-        if($entity->getUser() == $this->getUser()) $canEdit = true;
-        if($this->isGranted('ROLE_SUPER_ADMIN')) $canEdit = true;
-        if(!$canEdit)
+        if ($entity->getUser() == $this->getUser()) {
+            $canEdit = true;
+        }
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            $canEdit = true;
+        }
+        if (!$canEdit) {
             throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
+        }
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Blog entity.');
@@ -240,28 +239,27 @@ class BlogController extends Controller
     }
 
     /**
-    * Creates a form to edit a Blog entity.
-    *
-    * @param Blog $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Blog entity.
+     *
+     * @param Blog $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Blog $entity)
     {
         $form = $this->createForm(new BlogType(), $entity, array(
             'action' => $this->generateUrl('profile_blog_update', [
-                'id' => $entity->getId()
+                'id' => $entity->getId(),
             ]),
             'method' => 'PUT',
         ));
 
-        $form->add('photos','iphp_file');
+        $form->add('photos', 'iphp_file');
 
         return $form;
     }
     /**
      * Edits an existing Blog entity.
-     *
      */
     public function updateAction(Request $request, $id)
     {
@@ -271,10 +269,15 @@ class BlogController extends Controller
 
         $canEdit = false;
 
-        if($entity->getUser() == $this->getUser()) $canEdit = true;
-        if($this->isGranted('ROLE_SUPER_ADMIN')) $canEdit = true;
-        if(!$canEdit)
+        if ($entity->getUser() == $this->getUser()) {
+            $canEdit = true;
+        }
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            $canEdit = true;
+        }
+        if (!$canEdit) {
             throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
+        }
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Blog entity.');
@@ -298,7 +301,6 @@ class BlogController extends Controller
     }
     /**
      * Deletes a Blog entity.
-     *
      */
     public function deleteAction(Request $request, $id)
     {
@@ -311,10 +313,15 @@ class BlogController extends Controller
 
             $canEdit = false;
 
-            if($entity->getUser() == $this->getUser()) $canEdit = true;
-            if($this->isGranted('ROLE_SUPER_ADMIN')) $canEdit = true;
-            if(!$canEdit)
+            if ($entity->getUser() == $this->getUser()) {
+                $canEdit = true;
+            }
+            if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+                $canEdit = true;
+            }
+            if (!$canEdit) {
                 throw new AccessDeniedHttpException('У вас нет прав на редактирование этого блога');
+            }
 
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find Blog entity.');

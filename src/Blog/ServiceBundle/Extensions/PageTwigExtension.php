@@ -1,19 +1,20 @@
 <?php
 namespace Blog\ServiceBundle\Extensions;
 
-use Blog\ServiceBundle\Extensions\PageExtension;
 
 class PageTwigExtension extends \Twig_Extension
 {
     protected $pages;
 
-    function __construct(PageExtension $pages) {
+    public function __construct(PageExtension $pages)
+    {
         $this->pages = $pages;
     }
 
-    public function getGlobals() {
+    public function getGlobals()
+    {
         return array(
-            'pages' => $this->pages->getPages()
+            'pages' => $this->pages->getPages(),
         );
     }
 
@@ -21,5 +22,4 @@ class PageTwigExtension extends \Twig_Extension
     {
         return 'page';
     }
-
 }

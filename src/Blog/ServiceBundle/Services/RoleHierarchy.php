@@ -23,7 +23,8 @@ class RoleHierarchy extends \Symfony\Component\Security\Core\Role\RoleHierarchy
 
     /**
      * Here we build an array with roles. It looks like a two-levelled tree - just
-     * like original Symfony roles are stored in security.yml
+     * like original Symfony roles are stored in security.yml.
+     *
      * @return array
      */
     private function buildRolesTree()
@@ -31,9 +32,9 @@ class RoleHierarchy extends \Symfony\Component\Security\Core\Role\RoleHierarchy
         $hierarchy = $this->hierarchy;
         $qb = $this->em->createQueryBuilder();
         $qb->select('r,p,c')
-            ->from('BlogServiceBundle:Role','r')
-            ->leftJoin('r.parents','p')
-            ->leftJoin('r.children','c')
+            ->from('BlogServiceBundle:Role', 'r')
+            ->leftJoin('r.parents', 'p')
+            ->leftJoin('r.children', 'c')
         ;
         $query = $qb->getQuery();
 
@@ -55,6 +56,7 @@ class RoleHierarchy extends \Symfony\Component\Security\Core\Role\RoleHierarchy
                 }
             }
         }
+
         return $hierarchy;
     }
 }

@@ -15,7 +15,7 @@ class PageAdmin extends Admin
         $formMapper
             ->add('name', 'text')
             ->add('title', 'text')
-            ->add('content',  'textarea', array('attr'=>array('class'=>'ckeditor')))
+            ->add('content',  'textarea', array('attr' => array('class' => 'ckeditor')))
         ;
     }
 
@@ -35,4 +35,3 @@ class PageAdmin extends Admin
         ;
     }
 }
-

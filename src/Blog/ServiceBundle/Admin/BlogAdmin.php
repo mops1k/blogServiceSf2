@@ -14,8 +14,8 @@ class BlogAdmin extends Admin
     {
         $formMapper
             ->add('title', 'text')
-            ->add('content',  'textarea', array('attr'=>array('class'=>'ckeditor')))
-            ->add('photos','iphp_file')
+            ->add('content',  'textarea', array('attr' => array('class' => 'ckeditor')))
+            ->add('photos', 'iphp_file')
         ;
     }
 
@@ -37,4 +37,3 @@ class BlogAdmin extends Admin
         ;
     }
 }
-

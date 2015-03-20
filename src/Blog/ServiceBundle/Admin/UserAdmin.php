@@ -17,11 +17,15 @@ class UserAdmin extends Admin
     {
         $formMapper
             ->add('realname')
-            ->add('username', 'text', array('label' => 'Логин','help'=>'Необходимо для авторизации на ресурсах'))
+            ->add('username', 'text', array('label' => 'Логин', 'help' => 'Необходимо для авторизации на ресурсах'))
             ->add('email', 'email', array('label' => 'Почта'))
-            ->add('enabled','checkbox')
+            ->add('enabled', 'checkbox', [
+                "required" => false,
+            ])
             ->add('blogName')
-            ->add('locked')
+            ->add('locked', 'checkbox', [
+                "required" => false,
+            ])
             ->add(
                 'userRoles',
                 'sonata_type_model_autocomplete',
@@ -29,7 +33,7 @@ class UserAdmin extends Admin
                     "property" => "title",
                     "by_reference" => false,
                     "multiple" => true,
-                    "required" => false
+                    "required" => false,
                 ]
             )
         ;
@@ -62,7 +66,7 @@ class UserAdmin extends Admin
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
-                )
+                ),
             ))
         ;
     }

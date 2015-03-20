@@ -2,13 +2,11 @@
 
 namespace Blog\ServiceBundle\Admin;
 
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class RoleAdmin extends Admin
@@ -35,21 +33,21 @@ class RoleAdmin extends Admin
             ->add('title')
             ->add('group', 'doctrine_orm_callback', array(
                 'field_type' => 'checkbox',
-                'callback' => function($queryBuilder, $alias, $field, $value) {
+                'callback' => function ($queryBuilder, $alias, $field, $value) {
 
                     if (!$value['value']) {
                         return false;
                     }
 
-                    /** @var $queryBuilder QueryBuilder */
+                    /* @var $queryBuilder QueryBuilder */
                     $queryBuilder
                         ->select($alias.',c')
-                        ->leftJoin(sprintf('%s.children',$alias),'c')
+                        ->leftJoin(sprintf('%s.children', $alias), 'c')
                         ->where('c.id is not null')
                     ;
 
                     return true;
-                }
+                },
             ))
         ;
     }
@@ -67,7 +65,7 @@ class RoleAdmin extends Admin
                     'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
-                )
+                ),
             ))
         ;
     }
@@ -82,6 +80,4 @@ class RoleAdmin extends Admin
             ->add('children')
         ;
     }
-
-
 }

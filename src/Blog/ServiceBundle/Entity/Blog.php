@@ -7,7 +7,7 @@ use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Blog
+ * Blog.
  *
  * @ORM\Table()
  * @ORM\Entity
@@ -67,11 +67,10 @@ class Blog
      */
     private $photos;
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -79,9 +78,10 @@ class Blog
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Blog
      */
     public function setTitle($title)
@@ -92,9 +92,9 @@ class Blog
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -102,9 +102,10 @@ class Blog
     }
 
     /**
-     * Set authorId
+     * Set authorId.
      *
      * @param integer $authorId
+     *
      * @return Blog
      */
     public function setAuthorId($authorId)
@@ -115,9 +116,9 @@ class Blog
     }
 
     /**
-     * Get authorId
+     * Get authorId.
      *
-     * @return integer 
+     * @return integer
      */
     public function getAuthorId()
     {
@@ -125,9 +126,10 @@ class Blog
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Blog
      */
     public function setContent($content)
@@ -138,9 +140,9 @@ class Blog
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -148,9 +150,10 @@ class Blog
     }
 
     /**
-     * Set date
+     * Set date.
      *
      * @param \DateTime $date
+     *
      * @return Blog
      */
     public function setDate($date)
@@ -161,9 +164,9 @@ class Blog
     }
 
     /**
-     * Get date
+     * Get date.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -171,9 +174,10 @@ class Blog
     }
 
     /**
-     * Set photos
+     * Set photos.
      *
      * @param string $photos
+     *
      * @return Blog
      */
     public function setPhotos($photos)
@@ -184,9 +188,9 @@ class Blog
     }
 
     /**
-     * Get photos
+     * Get photos.
      *
-     * @return string 
+     * @return string
      */
     public function getPhotos()
     {
@@ -194,9 +198,10 @@ class Blog
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \Blog\ServiceBundle\Entity\User $user
+     *
      * @return Blog
      */
     public function setUser(\Blog\ServiceBundle\Entity\User $user = null)
@@ -207,9 +212,9 @@ class Blog
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Blog\ServiceBundle\Entity\User 
+     * @return \Blog\ServiceBundle\Entity\User
      */
     public function getUser()
     {

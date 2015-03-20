@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\RoleInterface;
 
 /**
- * Role
+ * Role.
  *
  * @ORM\Table(name="roles")
  * @ORM\Entity
@@ -68,7 +68,7 @@ class Role implements RoleInterface, \Serializable
     private $description = '';
 
     /**
-     * Get id
+     * Get id.
      *
      * @return integer
      */
@@ -78,21 +78,22 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Role
      */
     public function setName($name)
     {
-        $name = strtoupper(str_replace("ROLE_","",$name));
+        $name = strtoupper(str_replace("ROLE_", "", $name));
         $this->name = "ROLE_".$name;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -102,9 +103,10 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Role
      */
     public function setTitle($title)
@@ -115,7 +117,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -125,9 +127,10 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Role
      */
     public function setDescription($description)
@@ -138,7 +141,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -153,7 +156,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -162,19 +165,21 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Add users
+     * Add users.
      *
      * @param User $users
+     *
      * @return Role
      */
     public function addUser(User $users)
     {
         $this->users[] = $users;
+
         return $this;
     }
 
     /**
-     * Remove users
+     * Remove users.
      *
      * @param User $users
      */
@@ -184,7 +189,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Get users
+     * Get users.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -227,7 +232,7 @@ class Role implements RoleInterface, \Serializable
      */
     public function unserialize($serialized)
     {
-        list (
+        list(
             $this->id,
             $this->name,
             // see section on salt below
@@ -236,9 +241,10 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Add parents
+     * Add parents.
      *
      * @param Role $parents
+     *
      * @return Role
      */
     public function addParent(Role $parents)
@@ -249,7 +255,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Remove parents
+     * Remove parents.
      *
      * @param Role $parents
      */
@@ -259,7 +265,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Get parents
+     * Get parents.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -269,9 +275,10 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Add children
+     * Add children.
      *
      * @param Role $children
+     *
      * @return Role
      */
     public function addChild(Role $children)
@@ -282,7 +289,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Remove children
+     * Remove children.
      *
      * @param Role $children
      */
@@ -292,7 +299,7 @@ class Role implements RoleInterface, \Serializable
     }
 
     /**
-     * Get children
+     * Get children.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
